@@ -4,19 +4,22 @@ export NVM_DIR="/home/zane/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 function grepex() {
-  banner 
-	&& grep -rn $1 -A 5 
-		--group-separator======================== 
-		--exclude-dir={bower_components,node_modules,\.git,test,examples,docs,__test__,__tests__} $PWD 
-	| sed -e 's/\:\([0-9]\+\):/#L\1\n/gm' 
-	| sed -e "s/\/home\/zane\/src\/[^/]*\/\(.*\#\)/"$CURRENT_PROJECT"\1/g"
+  banner && grep -rn $1 -A 5  \
+		--group-separator========================  \
+		--exclude-dir={bower_components,node_modules,\.git,test,examples,docs,__test__,__tests__} $PWD | 
+	sed -e 's/\:\([0-9]\+\):/#L\1\n/gm' | 
+	sed -e "s/\/home\/zane\/src\/[^/]*\/\(.*\#\)/"$CURRENT_PROJECT"\1/g"
 }
 function fname() {
+	if [ -z "$1" ] ; 
+		then read name ;
+		else name=$1 ; 
+	fi
 	banner1 && 
-	grep -rn "\("$1"\:\)\|\(function "$1"\)\|prototype\."$1 
-		--exclude-dir={bower_components,node_modules,\.git,test,examples,docs,__test__,__tests__} $PWD 
-	| sed -e 's/\:\([0-9]\+\):/#L\1\n/gm' 
-	| sed -e "s/\/home\/zane\/src\/[^/]*\/\(.*\#\)/"$CURRENT_PROJECT"\1/g"
+	grep -rn "\("$name"\:\)\|\(function "$name"\)\|prototype\."$name  \
+		--exclude-dir={bower_components,node_modules,\.git,test,examples,docs,__test__,__tests__} $PWD | 
+		sed -e 's/\:\([0-9]\+\):/#L\1\n/gm' | 
+		sed -e "s/\/home\/zane\/src\/[^/]*\/\(.*\#\)/"$CURRENT_PROJECT"\1/g"
 	read name
 	if [ "${name:0:5}" == "name " ] ;
 		then name ${name:5} ;
@@ -43,21 +46,20 @@ function banner1() {
 }
 
 function updatedotfiles() {
-	(cd ~/src/dotfiles 
-		&& cp ~/.bashrc . 
-		&& cp ~/.vimrc . 
-		&& git add . -A 
-		&& git commit -m 'update dotfiles' 
-		&& git push origin master )
+	(cd ~/src/dotfiles && 
+		cp ~/.bashrc . && 
+		cp ~/.vimrc . && 
+		git add . -A && 
+		git commit -m 'update dotfiles' && 
+		git push origin master )
 }
 
 function gitamend() {
-	git add . -A 
-		&& git commit --amend --no-edit 
-		&& git push origin $(
+	git add . -A && 
+		git commit --amend --no-edit && 
+		git push origin $(
 			if [ -z "$1" ] ; 
 				then echo $1 ; 
 				else echo master ; 
-			fi) 
-			-f
+			fi) -f
 }
