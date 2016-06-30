@@ -1,12 +1,5 @@
 PS1='${PWD##*/} $ '
 export PATH=$PATH:$HOME/bin:$HOME/.npm/bin
-alias reth="sudo /etc/init.d/rethinkdb start"
-alias mong="sudo -u mongodb mongod --fork --dbpath /var/lib/mongodb/ --smallfiles --logpath /var/log/mongodb/mongodb.log --logappend"
-alias scre="sudo /etc/init.d/screen-cleanup start && screen"
-
-export PATH="$PATH:$HOME/bin:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-complete -C '/usr/local/bin/aws_completer' aws
-
 export NVM_DIR="/home/zane/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
@@ -41,7 +34,7 @@ function banner1() {
 }
 
 function updatedotfiles() {
-	(cd ~/src/dotfiles && cp ~/.bashrc . && cp ~/.vimrc . && gitamend)
+	(cd ~/src/dotfiles && cp ~/.bashrc . && cp ~/.vimrc . && git add . -A && git commit -m 'update dotfiles' && git push origin master )
 }
 
 function gitamend() {
