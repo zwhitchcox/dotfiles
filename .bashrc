@@ -12,19 +12,19 @@ function grepex() {
 }
 function fname() {
 	if [ -z "$1" ] ; 
-		then read name ;
+		then echo && read name ;
 		else name=$1 ; 
 	fi
-	if [ "${name:0:5}" == "name " ]
-		then name ${name:5}
+	if [ "${name:(-3)}" == ".js" ]
+		then name $name && echo
 		fname
 		return
 	fi
-	banner1 && 
 	grep -rn "\("$name"\:\)\|\(function "$name"\)\|prototype\."$name  \
 		--exclude-dir={bower_components,node_modules,\.git,test,examples,docs,__test__,__tests__} $PWD | 
 		sed -e 's/\:\([0-9]\+\):/#L\1\n/gm' | 
 		sed -e "s/\/home\/zane\/src\/[^/]*\/\(.*\#\)/"$CURRENT_PROJECT"\1/g"
+	echo
 	read name
 	fname $name
 }
