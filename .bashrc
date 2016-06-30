@@ -16,7 +16,7 @@ function fname() {
 		else name=$1 ; 
 	fi
 	if [ "${name:(-3)}" == ".js" ]
-		then name $name && echo
+		then name $name
 		fname
 		return
 	fi
@@ -29,7 +29,7 @@ function fname() {
 	fname $name
 }
 function name() {
-	find . -name $1 | sed -e 's/\.\/src\//'$CURRENT_PROJECT'/g'
+	find . -name $1 | sed -e 's/\.\//'$CURRENT_PROJECT'/g'
 }
 function setName() {
 	export CURRENT_PROJECT=$(echo $1 | sed 's/\//\\\//g') 
