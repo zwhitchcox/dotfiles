@@ -15,20 +15,21 @@ function fname() {
 		then read name ;
 		else name=$1 ; 
 	fi
+	if [ "${name:0:5}" == "name " ]
+		then name ${name:5}
+		fname
+		return
+	fi
 	banner1 && 
 	grep -rn "\("$name"\:\)\|\(function "$name"\)\|prototype\."$name  \
 		--exclude-dir={bower_components,node_modules,\.git,test,examples,docs,__test__,__tests__} $PWD | 
 		sed -e 's/\:\([0-9]\+\):/#L\1\n/gm' | 
 		sed -e "s/\/home\/zane\/src\/[^/]*\/\(.*\#\)/"$CURRENT_PROJECT"\1/g"
 	read name
-	if [ "${name:0:5}" == "name " ] ;
-		then name ${name:5} ;
-		read name
-	fi
 	fname $name
 }
 function name() {
-	find . -name $1 | sed -e 's/\.\/src\///g'
+	find . -name $1 | sed -e 's/\.\/src\//'$CURRENT_PROJECT'/g'
 }
 function setName() {
 	export CURRENT_PROJECT=$(echo $1 | sed 's/\//\\\//g') 
