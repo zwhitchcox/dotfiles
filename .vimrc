@@ -7,20 +7,15 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let g:NERDTreeDirArrows=0
 
 inoremap {<Tab> {}<Left>
-
 inoremap {<Tab><Tab> {<CR>}<Esc>O<Tab>
-
 inoremap [<Tab> []<Left>
-
 inoremap [<Tab><Tab> [<CR>]<Esc>O<Tab>
-
 inoremap (<Tab> ()<Left>
-
 inoremap (<Tab><Tab> (<CR>)<Esc>O<Tab>
-
 inoremap <C-u> <Esc>O<Tab>
-
 inoremap <C-h> <Esc>jA
+inoremap fn( function(
+inoremap fn<Space> function<Space>
 
 
 imap <C-p> <C-n>
