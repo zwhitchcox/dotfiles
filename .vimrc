@@ -62,3 +62,29 @@ execute "set <M-n>=\en"
 execute "set <M-p>=\ep"
 noremap <M-n> :bn<CR>
 noremap <M-p> :bp<CR>
+syntax on
+set backspace=indent,eol,start
+nmap ,n :NERDTreeFind<CR>
+nnoremap ,j :buffers<CR>:b
+if exists('+autochdir')
+    set autochdir
+else
+    autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
+endif
+set laststatus=2
+set statusline=%f
+inoremap <Char-0x07F> <BS>
+nnoremap <Char-0x07F> <BS>
+if !has("gui_running")
+    set term=xterm
+    set t_Co=256
+    let &t_AB="\e[48;5;%dm"
+    let &t_AF="\e[38;5;%dm"
+    colorscheme moriarty
+    set background=dark
+endif
+vnoremap ,o y:e <C-R>"
+nnoremap ,o 0f'<Right>vf'<Left>y:e <C-R>"
+nnoremap ,b 0f'<Right>vf'<Left>y:call system('powershell.exe -command Start-Process "chrome.exe" "http://npmjs.org/<C-R>""')<Enter>
+
+vnoremap <LeftMouse> "*y
