@@ -20,7 +20,7 @@ function fname() {
 		fname
 		return
 	fi
-	grep -rn "\("$name"\:\)\|\(function "$name"\)\|\(prototype\."$name"\)\|"$name"\s=\sfunction"  --exclude=\*.d\.ts \
+	grep -rn "\("$name"\:\)\|\(function "$name"\)\|\(prototype\."$name"\)|"$name"\s=\sfunction"  --exclude=\*.d\.ts \
 		--exclude-dir={bower_components,node_modules,\.git,test,examples,docs,__test__,__tests__} $PWD |
 		sed -e 's/\:\([0-9]\+\):/#L\1\n/gm' |
 		sed -e "s/\/home\/zane\/src\/[^/]*\/\(.*\#\)/\n\n"$CURRENT_PROJECT"\1/g"
@@ -74,4 +74,8 @@ function tst() {
 	tmux select-pane -t top
 	tmux send-keys "vi" Enter
 	tmux -2 attach-session -d 
+}
+
+function gclone() {
+	git clone --depth=1 $1
 }
