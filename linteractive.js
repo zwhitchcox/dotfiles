@@ -32,7 +32,7 @@ function spawnVim(file, line, rule) {
     begArgs.concat([`+${line} -c "echo '${rule}'"`, file]),
     { stdio: 'inherit' }
   )
-  vim.on('exit', () => iter < mistakes.length && spawnVim(...mistakes[++iter])
+  vim.on('exit', () => iter < mistakes.length && spawnVim(...mistakes[++iter]))
 }
 const mistakes = results.reduce((mistakes, result) => (result.errorCount 
   && mistakes.concat(result.messages.map(msg => [
