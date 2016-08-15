@@ -28,9 +28,6 @@ inoremap <C-h> <Esc>jA
 inoremap fn( function(
 inoremap fn<Space> function<Space>
 
-" for window navigation on chromebook
-map <C-A-w> <C-w>
-
 " Persistent Undo
 set undofile 
 set undodir=~/.vim/undodir
