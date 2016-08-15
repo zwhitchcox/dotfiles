@@ -1,5 +1,4 @@
 #! /usr/bin/env node
-'use strict';
 const path = require('path')
 const fs = require('fs')
 const cp = require('child_process')
@@ -7,6 +6,7 @@ const os = require('os')
 const isWin = /^win/.test(os.platform())
 const cmd = isWin ? 'powershell.exe' : 'vim'
 const begArgs = isWin ? ['vim'] : []
+
 let Engine;
 try {
   Engine = require(path.resolve(process.cwd()+'/node_modules/eslint')).CLIEngine
@@ -22,6 +22,8 @@ const options = {
   cacheFile: '.eslintcache',
   allowInlineConfig: true
 }
+
+console.log('Linting...')
 const {results} = new Engine(options).executeOnFiles(['src/**/*-test.js*'])
 
 function spawnVim(file, line, rule) {
@@ -30,11 +32,7 @@ function spawnVim(file, line, rule) {
     begArgs.concat([`+${line} -c "echo '${rule}'"`, file]),
     { stdio: 'inherit' }
   )
-	vim.on('exit', () => {
-		if (iter<=mistakes.length) {
-			spawnVim(...mistakes[++iter])
-		}
-	})
+  vim.on('exit', () => iter < mistakes.length && spawnVim(...mistakes[++iter])
 }
 const mistakes = results.reduce((mistakes, result) => (result.errorCount 
   && mistakes.concat(result.messages.map(msg => [
@@ -43,7 +41,7 @@ const mistakes = results.reduce((mistakes, result) => (result.errorCount
     msg.ruleId,
   ]))) || mistakes
 , [])
-	.reverse()
+  .reverse()
 
 console.log(`there were ${mistakes.length} mistakes found`)
 
