@@ -1,4 +1,5 @@
 #! /usr/bin/env node
+//https://i.sli.mg/WPITvq.gifv
 const path = require('path')
 const fs = require('fs')
 const cp = require('child_process')
