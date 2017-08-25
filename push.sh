@@ -1,3 +1,4 @@
+#!/usr/local/bin bash
 cp -rf ~/.bashrc .
 cp -rf ~/.vimrc .
 cp -rf ~/.tmux.conf .

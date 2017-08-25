@@ -1,3 +1,4 @@
+#!/usr/local/bin bash
 git pull origin master
 cp -rf .bashrc ~
 cp -rf .vimrc ~
