@@ -254,3 +254,6 @@ set incsearch
 syntax enable
 set background=light
 colorscheme solarized
+$syntax enable
+set background=light
+colorscheme solarized
