@@ -162,7 +162,6 @@ set mouse=v
 " Set this to the name of your terminal that supports mouse codes.
 " Must be one of: xterm, xterm2, netterm, dec, jsbterm, pterm
 set ttymouse=xterm2
-call pathogen#helptags()
 
 
 set statusline+=%#warningmsg#
@@ -252,3 +251,6 @@ let g:syntastic_check_on_wq = 0
 au BufRead,BufNewFile *.ts set shiftwidth=2
 set shiftwidth=2
 set incsearch
+syntax enable
+set background=light
+colorscheme solarized
