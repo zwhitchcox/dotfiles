@@ -9,11 +9,10 @@ ssh-keygen -t rsa -b 4096 -C "zwhitchcox@gmail.com" -f ~/.ssh/id_rsa -N ""
 eval $(ssh-agent -s)
 ssh-add ~/.ssh/id_rsa
 echo;
-echo  "Now, copy this key to your github account and press enter continue: "
+read -p  "Now, copy this key to your github account and press enter continue: "
 echo;
 cat ~/.ssh/id_rsa.pub
 echo;
-read _
 git clone git@github.com:zwhitchcox/dotfiles.git
 cd dotfiles
 sh setup.sh
