@@ -107,7 +107,7 @@ export TERM=screen-256color
 
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
-nvm use 7.6.0 --silent
+nvm use node --silent
 (nohup node ~/.crouton-clipboard/server.js > /dev/null 2>&1 &)
 PS1='${PWD##*/} $ '
 #echo "You can't just use finger guns as bash prompt."
