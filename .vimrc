@@ -251,9 +251,3 @@ let g:syntastic_check_on_wq = 0
 au BufRead,BufNewFile *.ts set shiftwidth=2
 set shiftwidth=2
 set incsearch
-syntax enable
-set background=light
-colorscheme solarized
-$syntax enable
-set background=light
-colorscheme solarized
