@@ -127,3 +127,4 @@ alias chrome="google-chrome-stable"
 alias fucking="sudo"
 export PATH="$PATH:/opt/yarn-0.22.0/bin"
 export EDITOR=vim
+sh ~/.aliases
