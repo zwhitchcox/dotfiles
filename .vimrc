@@ -78,7 +78,7 @@ inoremap <Leader>cc <Esc>vbcclass <C-r>" {<CR>}<Esc>O
 inoremap <Leader>crc <Esc>vbcclass <C-r>" extends Component {<CR>}<Esc>Orender() {<CR>}<Esc>Oreturn <div></div><Esc>F<i
 
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>
+nnoremap <leader>sv :w<CR>:source $MYVIMRC<CR>
 
 
 inoremap fn( function(
@@ -252,3 +252,24 @@ let g:syntastic_check_on_wq = 0
 au BufRead,BufNewFile *.ts set shiftwidth=2
 set shiftwidth=2
 set incsearch
+
+fun! GetPath()
+  let path = ""
+  if exists("t:NERDTreeBufName") && @% == t:NERDTreeBufName
+    let path = g:NERDTreeFileNode.GetSelected().path
+    if path.isDirectory == 1
+      let path = path.pathSegments
+    else
+      let path = path.pathSegments[0:-2]
+    endif
+    let path =  "/" . join(path, "/")
+  else
+    let path = getcwd()
+  endif
+  return path
+endfun
+
+fun! CreateReactComponent(...)
+  exec "!create-react-component -p " . GetPath() . " " . join(a:000, " ")
+endfun
+command! -nargs=* Crc call CreateReactComponent(<f-args>)
