@@ -253,8 +253,8 @@ au BufRead,BufNewFile *.ts set shiftwidth=2
 set shiftwidth=2
 set incsearch
 
-fun! GetPath()
-  let path = ""
+fun! CreateReactComponent(mobx, ...)
+  let l:command = "!create-react-component " . (a:mobx ? " -m " : "")
   if exists("t:NERDTreeBufName") && @% == t:NERDTreeBufName
     let path = g:NERDTreeFileNode.GetSelected().path
     if path.isDirectory == 1
@@ -262,14 +262,12 @@ fun! GetPath()
     else
       let path = path.pathSegments[0:-2]
     endif
-    let path =  "/" . join(path, "/")
+    exec l:command
+      . " -p /" . join(path, "/") . " " . join(a:000[:1], " ")
   else
-    let path = getcwd()
+    echo "r " . l:command
   endif
-  return path
 endfun
 
-fun! CreateReactComponent(...)
-  exec "!create-react-component -p " . GetPath() . " " . join(a:000, " ")
-endfun
-command! -nargs=* Crc call CreateReactComponent(<f-args>)
+command! -nargs=* Crc  call CreateReactComponent(0, <f-args>)
+command! -nargs=* Crcm call CreateReactComponent(1, <f-args>)
