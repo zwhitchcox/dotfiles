@@ -129,3 +129,4 @@ export PATH="$PATH:/opt/yarn-0.22.0/bin"
 export EDITOR=vim
 export HISTSIZE=50000
 export HISTFILESIZE=100000
+export NODEBASHVIM=$HOME/node-bash/vim

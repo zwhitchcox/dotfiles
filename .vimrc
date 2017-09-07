@@ -252,22 +252,12 @@ let g:syntastic_check_on_wq = 0
 au BufRead,BufNewFile *.ts set shiftwidth=2
 set shiftwidth=2
 set incsearch
-
-fun! CreateReactComponent(mobx, ...)
-  let l:command = "!create-react-component " . (a:mobx ? " -m " : "")
-  if exists("t:NERDTreeBufName") && @% == t:NERDTreeBufName
-    let path = g:NERDTreeFileNode.GetSelected().path
-    if path.isDirectory == 1
-      let path = path.pathSegments
-    else
-      let path = path.pathSegments[0:-2]
-    endif
-    exec l:command
-      . " -p /" . join(path, "/") . " " . join(a:000[:1], " ")
-  else
-    echo "r " . l:command
+fun! GetUserScripts()
+  if $NODEBASHVIM != ""
+    let files = split(system("ls -1 " . $NODEBASHVIM), "\n")
+    for file in files
+      exec 'source ' . $NODEBASHVIM . "/" . file
+    endfor
   endif
 endfun
-
-command! -nargs=* Crc  call CreateReactComponent(0, <f-args>)
-command! -nargs=* Crcm call CreateReactComponent(1, <f-args>)
+command! Gus call GetUserScripts()
