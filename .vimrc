@@ -162,7 +162,6 @@ set mouse=v
 " Set this to the name of your terminal that supports mouse codes.
 " Must be one of: xterm, xterm2, netterm, dec, jsbterm, pterm
 set ttymouse=xterm2
-call pathogen#helptags()
 
 
 set statusline+=%#warningmsg#
