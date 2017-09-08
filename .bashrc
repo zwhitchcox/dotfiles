@@ -26,3 +26,4 @@ export NODEBASHVIM=$HOME/node-bash/vim
 if [ -f ~/.dir_colors/dircolors ]
   then eval `dircolors ~/.dir_colors/dircolors`
 fi
+PS1='${PWD##*/} $ '

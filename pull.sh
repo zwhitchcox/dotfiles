@@ -7,4 +7,4 @@ cp -rf .gitconfig ~
 cp -rf .snippets ~
 cp -rf .aliases ~
 cp -rf bin ~
-
+echo "All files copied!"
