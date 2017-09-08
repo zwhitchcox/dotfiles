@@ -205,8 +205,6 @@ function! Train()
 endfunction
 command! Train call Train()
 nnoremap ,t :SyntasticToggleMode<cr>
-nnoremap "*p :r !cat /home/zane/.crouton-clipboard/data.txt<CR>
-vnoremap "*y :'<,'>w! /home/zane/.crouton-clipboard/data.txt<CR>
 let i = char2nr('a')
 while i <= char2nr('z')
   execute "nnoremap ''".nr2char(i)." '".nr2char(i)."zz<C-d>H4k4j"
