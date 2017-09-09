@@ -137,17 +137,17 @@ endif
 
 
 " set colors
-syntax on
-if !has("gui_running")
-  set term=xterm
-  set t_Co=256
-  set t_ut=
-  let &t_AB="\e[48;5;%dm"
-  let &t_AF="\e[38;5;%dm"
-  colorscheme solarized
-  set background=light
-endif
-set backspace=indent,eol,start
+"syntax on
+"if !has("gui_running")
+"  set term=xterm
+"  set t_Co=256
+"  set t_ut=
+"  let &t_AB="\e[48;5;%dm"
+"  let &t_AF="\e[38;5;%dm"
+"  colorscheme solarized
+"  set background=light
+"endif
+"set backspace=indent,eol,start
 
 nnoremap ,q <Esc>:q<CR>
 nnoremap <C-Up> <C-w><Right>H8k<C-w><Left>
