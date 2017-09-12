@@ -7,3 +7,5 @@ find . -maxdepth 1 -regextype posix-egrep -regex "\.\/\..*" ! -name .git -exec c
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim +PlugInstall +PlugInstall +qa
+git clone git@github.com:zwhitchcox/personal-config $HOME/.personal-config
+echo 'All Done!

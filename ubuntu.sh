@@ -1,5 +1,5 @@
 sudo add-apt-repository ppa:atareao/atareao
-sudo apt-get install dconf-cli my-weather-indicator -y
+sudo apt-get install dconf-cli my-weather-indicator vim-gnome -y
 git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git ~/solarized
 cd ~/solarized
 ./install.sh --install-dircolors
