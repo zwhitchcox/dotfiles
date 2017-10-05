@@ -27,6 +27,7 @@ Plug 'Quramy/vim-js-pretty-template'
 Plug 'Quramy/vim-dtsm'
 Plug 'mhartington/vim-typings'
 Plug 'chemzqm/vim-jsx-improve'
+Plug 'zwhitchcox/grep.vim'
 call plug#end()
 
 xmap ga <Plug>(EasyAlign)
@@ -257,4 +258,18 @@ fun! GetUserScripts()
   endif
 endfun
 command! Gus call GetUserScripts()
+map <F4> :execute " grep -srnw --binary-files=without-match --exclude-dir=.git --exclude-from=exclude.list . -e " . expand("<cword>") . " " <bar> cwindow<CR>
 
+
+fun! GlobalSearch(term)
+  if (exists("b:NERDTree"))
+    let a:path =  join(g:NERDTreeFileNode.GetSelected()['path']['pathSegments'], " ") 
+  else
+    let a:path = join(split(expand("%:p"), "/"), " ")
+  endif
+  let a:root = system("get-root " . a:path)
+  exec  "Rgrep " . a:term . " --startdir " . a:root . " *"
+endfun
+command! -nargs=1 GlobalSearch call GlobalSearch(<f-args>)
+let Grep_Skip_Dirs="node_modules .git dist"
+let Grep_Skip_files="*.min.*"

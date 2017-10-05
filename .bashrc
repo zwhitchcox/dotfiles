@@ -18,6 +18,7 @@ nvm use node
 shopt -s 
 alias chrome="google-chrome-stable"
 alias fucking="sudo"
+alias ~~="cd $HOME/dev"
 export PATH="$PATH:/opt/yarn-0.22.0/bin"
 export EDITOR=vim
 export HISTSIZE=50000
@@ -27,3 +28,4 @@ if [ -f ~/.dir_colors/dircolors ]
   then eval `dircolors ~/.dir_colors/dircolors`
 fi
 PS1='${PWD##*/} $ '
+if [[ $HOME == "$(pwd)" ]]; then cd $HOME/dev ; fi
