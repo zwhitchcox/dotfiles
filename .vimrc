@@ -185,7 +185,7 @@ let g:elm_setup_keybindings = 1
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 "nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>"
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-inoremap kj <Esc>
+inoremap hc <Esc>
 
 nnoremap ,n :set nopaste<CR>
 nnoremap ,p :set paste<CR>
@@ -273,3 +273,5 @@ endfun
 command! -nargs=1 GlobalSearch call GlobalSearch(<f-args>)
 let Grep_Skip_Dirs="node_modules .git dist"
 let Grep_Skip_files="*.min.*"
+set backspace=2 " make backspace work like most other programs
+
