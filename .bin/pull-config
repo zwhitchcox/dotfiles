@@ -6,6 +6,6 @@ cp -rf ~/dotfiles/.tmux.conf ~
 cp -rf ~/dotfiles/.gitconfig ~
 cp -rf ~/dotfiles/.snippets ~
 cp -rf ~/dotfiles/.aliases ~
-cp -rf ~/dotfiles/bin ~
-chmod u+x ~/bin/*
+cp -rf ~/dotfiles/.bin ~
+chmod u+x ~/.bin/*
 echo "All files copied!"
