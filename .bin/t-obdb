@@ -1,0 +1,19 @@
+#!/bin/sh
+set -- $(stty size) # $1 = rows $2 = columns
+tmux -2 new-session -d -s obdb -x "$2" -y "$(($1 - 1))"
+tmux send-keys "cd obdb"
+tmux send-keys "Enter"
+tmux send-keys "cd sleep \".3\""
+tmux send-keys "Enter"
+tmux send-keys "vim"
+tmux send-keys "Enter"
+tmux split-window -t obdb -v
+tmux resize-pane -t obdb -y "10"
+tmux send-keys "cd obdb"
+tmux send-keys "Enter"
+tmux send-keys "node serve"
+tmux send-keys "Enter"
+tmux select-pane -t "1"
+tmux new-window
+tmux previous-window
+tmux attach -t obdb

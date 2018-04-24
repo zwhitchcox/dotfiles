@@ -1,0 +1,11 @@
+#!/bin/bash
+$(cd ~/dotfiles && git pull origin master)
+cp -rf ~/dotfiles/.bashrc ~
+cp -rf ~/dotfiles/.vimrc ~
+cp -rf ~/dotfiles/.tmux.conf ~
+cp -rf ~/dotfiles/.gitconfig ~
+cp -rf ~/dotfiles/.snippets ~
+cp -rf ~/dotfiles/.aliases ~
+cp -rf ~/dotfiles/bin ~
+chmod u+x ~/bin/*
+echo "All files copied!"
