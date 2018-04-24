@@ -272,6 +272,15 @@ fun! GlobalSearch(term)
   exec  "Rgrep " . a:term . " --startdir " . a:root . " *"
 endfun
 command! -nargs=1 GlobalSearch call GlobalSearch(<f-args>)
+fun! GitPush(message)
+  echom system("cd ~/dev/obdb && gitpush " . a:message)
+  exec "redraw!"
+endfun
+command! -nargs=1 GitPush call GitPush(<f-args>)
+fun! PushConfig() 
+  echom system("push-config")
+endfun
+command! PushConfig call PushConfig()
 let Grep_Skip_Dirs="node_modules .git dist"
 let Grep_Skip_files="*.min.*"
 set backspace=2 " make backspace work like most other programs
