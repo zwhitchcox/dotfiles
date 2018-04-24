@@ -67,6 +67,7 @@ nnoremap <Leader>{} A {<Esc>jo}<Esc>O
 
 " console.log
 inoremap <Leader>log <Esc>vBcconsole.log('<C-r>"', <C-r>")
+inoremap <Leader>slog <Esc>vBcconsole.log('<C-r>"')
 nmap <Leader>log o<C-r>"<Leader>log<Esc>=]`$
 vnoremap <Leader>log sconsole.log('<C-r>"', <C-r>")
 vnoremap <Leader>ilog s(function() {console.log('<C-r>"', <C-r>"); return <C-r>"})()
@@ -274,4 +275,5 @@ command! -nargs=1 GlobalSearch call GlobalSearch(<f-args>)
 let Grep_Skip_Dirs="node_modules .git dist"
 let Grep_Skip_files="*.min.*"
 set backspace=2 " make backspace work like most other programs
-
+colorscheme solarized
+set background=light

@@ -8,7 +8,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
-export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin:$HOME/.bin
 export GOPATH=$HOME/go
 nvm use node
 
