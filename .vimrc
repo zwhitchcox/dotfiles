@@ -275,6 +275,3 @@ command! -nargs=1 GlobalSearch call GlobalSearch(<f-args>)
 let Grep_Skip_Dirs="node_modules .git dist"
 let Grep_Skip_files="*.min.*"
 set backspace=2 " make backspace work like most other programs
-colorscheme solarized
-set background=light
-set t_md=
