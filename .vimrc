@@ -71,9 +71,14 @@ nnoremap <Leader>{} A {<Esc>jo}<Esc>O
 " console.log
 inoremap <Leader>log <Esc>vBcconsole.log('<C-r>"', <C-r>")
 inoremap <Leader>slog <Esc>vBcconsole.log('<C-r>"')
+inoremap <Leader>llog <Esc>v^cconsole.log('<C-r>"', <C-r>")
+nnoremap <Leader>llog <Esc>$v^cconsole.log('<C-r>"', <C-r>")
 nmap <Leader>log o<C-r>"<Leader>log<Esc>=]`$
 vnoremap <Leader>log sconsole.log('<C-r>"', <C-r>")
 vnoremap <Leader>ilog s(function() {console.log('<C-r>"', <C-r>"); return <C-r>"})()
+
+" JSON.stringify
+vnoremap <Leader>str sJSON.stringify(<C-r>")
 
 " snippets
 inoremap iife<Tab> ((function(){})<Esc>hi
