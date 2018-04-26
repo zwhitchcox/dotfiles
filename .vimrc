@@ -70,6 +70,7 @@ nnoremap <Leader>{} A {<Esc>jo}<Esc>O
 
 " console.log
 inoremap <Leader>log <Esc>vBcconsole.log('<C-r>"', <C-r>")
+inoremap <Leader>strlog <Esc>vBcconsole.log('<C-r>"', JSON.stringify(<C-r>"))
 inoremap <Leader>slog <Esc>vBcconsole.log('<C-r>"')
 inoremap <Leader>llog <Esc>v^cconsole.log('<C-r>"', <C-r>")
 nnoremap <Leader>llog <Esc>$v^cconsole.log('<C-r>"', <C-r>")
