@@ -28,6 +28,7 @@ Plug 'Quramy/vim-dtsm'
 Plug 'mhartington/vim-typings'
 Plug 'chemzqm/vim-jsx-improve'
 Plug 'zwhitchcox/grep.vim'
+Plug 'jeetsukumaran/vim-buffergator'
 call plug#end()
 
 xmap ga <Plug>(EasyAlign)
@@ -77,6 +78,7 @@ inoremap iife<Tab> ((function(){})<Esc>hi
 inoremap <Leader>cf <Esc>vbcfunction <C-r>"() {<CR>}<Esc>O
 inoremap <Leader>cc <Esc>vbcclass <C-r>" {<CR>}<Esc>O
 inoremap <Leader>crc <Esc>vbcclass <C-r>" extends Component {<CR>}<Esc>Orender() {<CR>}<Esc>Oreturn <div></div><Esc>F<i
+inoremap <Leader>iter <Esc>vbcfor (const key in <C-r>") {<CR>}<Esc>Oconst prop = <C-r>"<CR>
 
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>sv :w<CR>:source $MYVIMRC<CR>
@@ -169,22 +171,6 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 1
-let g:elm_syntastic_show_warnings = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-
-
-let g:elm_jump_to_error = 1
-let g:elm_make_show_warnings = 0
-let g:elm_detailed_complete = 1
-let g:elm_format_autosave = 1
-let g:elm_format_fail_silently = 1
-let g:elm_format_two_spaces = 1
-let g:elm_setup_keybindings = 1
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-"nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>"
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 inoremap hc <Esc>
 
@@ -194,71 +180,14 @@ nnoremap <Leader>i ddO
 
 nnoremap <C-x> <C-w>
 
-function! Train() 
-  call system("echo 'port module Training exposing (..)\n\nimport Html exposing (..)\nimport Html.App exposing (beginnerProgram)\nimport Html.Attributes exposing (..)\nimport Html.Events exposing (..)\n\nmain : Program Never\nmain =\n  ' > ".expand("%"))
-  silent! e!
-  silent! SyntasticReset
-  $
-  normal! A
-  startinsert
-  normal! l
-  call cursor( line('.'), col('.') + 1)
-  echo ''
-endfunction
-command! Train call Train()
-nnoremap ,t :SyntasticToggleMode<cr>
-let i = char2nr('a')
-while i <= char2nr('z')
-  execute "nnoremap ''".nr2char(i)." '".nr2char(i)."zz<C-d>H4k4j"
-  let i = i + 1
-endwhile
 " write the file when you accidentally opened it without the right (root) privileges
 cmap w!! w !sudo tee % > /dev/null
 silent execute "!stty -ixon"
 let s:prevcountcache=[[], 0]
-function! ShowCount()
-  let key=[@/, b:changedtick]
-  if s:prevcountcache[0]==#key
-    return s:prevcountcache[1]
-  endif
-  let s:prevcountcache[0]=key
-  let s:prevcountcache[1]=0
-  let pos=getpos('.')
-  try
-    redir => subscount
-    silent %s///gne
-    redir END
-    let result=matchstr(subscount, '\d\+')
-    let s:prevcountcache[1]=result
-    return result
-  finally
-    call setpos('.', pos)
-  endtry
-endfunction
 set ruler
-let &statusline='%{ShowCount()} %<%f %h%m%r%=%-14.(%l,%c%V%) %P'
-let g:syntastic_javascript_checkers = ["standard"]
-let g:syntastic_javascript_standard_generic = 1 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-au BufRead,BufNewFile *.ts set shiftwidth=2
+au BufRead,BufNewFile * set shiftwidth=2
 set shiftwidth=2
 set incsearch
-fun! GetUserScripts()
-  if $NODEBASHVIM != ""
-    let files = split(system("ls -1 " . $NODEBASHVIM), "\n")
-    for file in files
-      exec 'source ' . $NODEBASHVIM . "/" . file
-    endfor
-  endif
-endfun
-command! Gus call GetUserScripts()
 map <F4> :execute " grep -srnw --binary-files=without-match --exclude-dir=.git --exclude-from=exclude.list . -e " . expand("<cword>") . " " <bar> cwindow<CR>
 
 
@@ -277,10 +206,17 @@ fun! GitPush(message)
   exec "redraw!"
 endfun
 command! -nargs=1 GitPush call GitPush(<f-args>)
-fun! PushConfig() 
-  echom system("push-config")
+fun! PushConfig(message) 
+  echom system("push-config " . "\"" . message . "\"")
 endfun
-command! PushConfig call PushConfig()
+command! -nargs=1 PushConfig call PushConfig(<f-args>)
+
+fun! RemoveAllConsoleLogs()
+  silent! exec "%s/\\s*console\\.log([^)]*)\\s*$\\n//g"
+  silent! exec "%s/\\s*console\\.log([^)]*)\\s*//g"
+endfun
+command! RemoveAllConsoleLogs call RemoveAllConsoleLogs()
+
 let Grep_Skip_Dirs="node_modules .git dist"
 let Grep_Skip_files="*.min.*"
 set backspace=2 " make backspace work like most other programs

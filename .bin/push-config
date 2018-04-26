@@ -5,4 +5,4 @@ cp -r ~/.tmux.conf ~/dotfiles
 cp -r ~/.gitconfig ~/dotfiles
 cp -r ~/.aliases ~/dotfiles
 cp -r ~/.bin ~/dotfiles
-(cd ~/dotfiles && gitpush "update")
+(cd ~/dotfiles && gitpush "$1")
