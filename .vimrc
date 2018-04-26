@@ -60,6 +60,8 @@ inoremap [<Tab> []<Left>
 inoremap [<Tab><Tab> [<CR>]<Esc>O<Tab>
 inoremap (<Tab> ()<Left>
 inoremap (<Tab><Tab> (<CR>)<Esc>O<Tab>
+inoremap ({<Tab> ({})<Left>
+inoremap ({<Tab><Tab> ({<CR>})<Esc>O<Tab>
 inoremap <C-u> <Esc>O<Tab>
 inoremap <C-h> <Esc>jA
 nnoremap p p=`]$
