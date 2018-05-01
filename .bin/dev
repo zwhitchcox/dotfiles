@@ -2,8 +2,8 @@
 PROJ="$1"
 set -- $(stty size) # $1 = rows $2 = columns
 tmux -2 new-session -d -s "$PROJ" -x "$2" -y "$(($1 - 1))"
-tmux split-window -t "$PROJ" -h
-tmux resize-pane -t "$PROJ" -x "10"
+tmux split-window -t "$PROJ" -v
+tmux resize-pane -t "$PROJ" -y "10"
 tmux select-pane -t "1"
 tmux send-keys "cd $PROJ"
 tmux send-keys "Enter"

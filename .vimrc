@@ -180,7 +180,8 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-inoremap hc <Esc>
+inoremap hr <Esc>
+inoremap jk <Esc>
 
 nnoremap ,n :set nopaste<CR>
 nnoremap ,p :set paste<CR>
