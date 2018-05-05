@@ -82,7 +82,8 @@ vnoremap <Leader>ilog s(function() {console.log('<C-r>"', <C-r>"); return <C-r>"
 vnoremap <Leader>str sJSON.stringify(<C-r>")
 
 " snippets
-inoremap iife<Tab> ((function(){})<Esc>hi
+nnoremap <Leader>iife i;(() => {<CR>})()<Esc>O
+nnoremap <Leader>aiife i;(async () => {<CR>})()<Esc>O
 inoremap <Leader>cf <Esc>vbcfunction <C-r>"() {<CR>}<Esc>O
 inoremap <Leader>cc <Esc>vbcclass <C-r>" {<CR>}<Esc>O
 inoremap <Leader>crc <Esc>vbcclass <C-r>" extends Component {<CR>}<Esc>Orender() {<CR>}<Esc>Oreturn <div></div><Esc>F<i
@@ -90,6 +91,7 @@ inoremap <Leader>iter <Esc>vbcfor (const key in <C-r>") {<CR>}<Esc>Oconst prop =
 
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>sv :w<CR>:source $MYVIMRC<CR>
+nnoremap <leader>run :!node script<CR>
 
 
 inoremap fn( function(

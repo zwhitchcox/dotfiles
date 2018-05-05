@@ -1,0 +1,2 @@
+#!/bin/sh
+docker-machine create --driver digitalocean --digitalocean-access-token "$DOAT" "$1"
