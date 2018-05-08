@@ -29,7 +29,29 @@ Plug 'mhartington/vim-typings'
 Plug 'chemzqm/vim-jsx-improve'
 Plug 'zwhitchcox/grep.vim'
 Plug 'jeetsukumaran/vim-buffergator'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'SirVer/ultisnips'
 call plug#end()
+
+" Persistent Undo
+set undofile 
+set undodir=~/.vim/undodir
+" Keep undo history across sessions by storing it in a file
+if has('persistent_undo')
+let vimDir = '$HOME/.vim'
+let &runtimepath.=','.vimDir
+let myUndoDir = expand(vimDir . '/undodir')
+" Create dirs
+call system('mkdir ' . vimDir)
+call system('mkdir ' . myUndoDir)
+let &undodir = myUndoDir
+set undofile
+endif
+au BufRead,BufNewFile *.css setfiletype scss
+if (has("autocmd"))
+au BufReadPost * if line("'\"") > 1 && line("'\"") < line("$") | exe "normal! g'\"" | endif
+endif
+"au BufRead,BufNewFile NERD_tree_1 
 
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
@@ -69,40 +91,39 @@ nnoremap <Leader>{} A {<Esc>jo}<Esc>O
 
 
 " console.log
-inoremap <Leader>log <Esc>vBcconsole.log('<C-r>"', <C-r>")
-inoremap <Leader>strlog <Esc>vBcconsole.log('<C-r>"', JSON.stringify(<C-r>"))
-inoremap <Leader>slog <Esc>vBcconsole.log('<C-r>"')
-inoremap <Leader>llog <Esc>v^cconsole.log('<C-r>"', <C-r>")
-nnoremap <Leader>llog <Esc>$v^cconsole.log('<C-r>"', <C-r>")
-nmap <Leader>log o<C-r>"<Leader>log<Esc>=]`$
-vnoremap <Leader>log sconsole.log('<C-r>"', <C-r>")
-vnoremap <Leader>ilog s(function() {console.log('<C-r>"', <C-r>"); return <C-r>"})()
+au FileType js inoremap <Leader>log <Esc>vBcconsole.log('<C-r>"', <C-r>")
+au FileType js inoremap <Leader>strlog <Esc>vBcconsole.log('<C-r>"', JSON.stringify(<C-r>"))
+au FileType js inoremap <Leader>slog <Esc>vBcconsole.log('<C-r>"')
+au FileType js inoremap <Leader>llog <Esc>v^cconsole.log('<C-r>"', <C-r>")
+au FileType js nnoremap <Leader>llog <Esc>$v^cconsole.log('<C-r>"', <C-r>")
+au FileType js nmap <Leader>log o<C-r>"<Leader>log<Esc>=]`$
+au FileType js vnoremap <Leader>log sconsole.log('<C-r>"', <C-r>")
+au FileType js vnoremap <Leader>ilog s(function() {console.log('<C-r>"', <C-r>"); return <C-r>"})()
+
 
 " JSON.stringify
-vnoremap <Leader>str sJSON.stringify(<C-r>")
+au FileType js vnoremap <Leader>str sJSON.stringify(<C-r>")
 
 " snippets
-nnoremap <Leader>iife i;(() => {<CR>})()<Esc>O
-nnoremap <Leader>aiife i;(async () => {<CR>})()<Esc>O
-inoremap <Leader>cf <Esc>vbcfunction <C-r>"() {<CR>}<Esc>O
-inoremap <Leader>cc <Esc>vbcclass <C-r>" {<CR>}<Esc>O
-inoremap <Leader>crc <Esc>vbcclass <C-r>" extends Component {<CR>}<Esc>Orender() {<CR>}<Esc>Oreturn <div></div><Esc>F<i
-inoremap <Leader>iter <Esc>vbcfor (const key in <C-r>") {<CR>}<Esc>Oconst prop = <C-r>"<CR>
-
-nnoremap <leader>ev :vsp $MYVIMRC<CR>
-nnoremap <leader>sv :w<CR>:source $MYVIMRC<CR>
+au FileType js nnoremap <Leader>iife i;(() => {<CR>})()<Esc>O
+au FileType js nnoremap <Leader>aiife i;(async () => {<CR>})()<Esc>O
+au FileType js inoremap <Leader>cf <Esc>vbcfunction <C-r>"() {<CR>}<Esc>O
+au FileType js inoremap <Leader>cc <Esc>vbcclass <C-r>" {<CR>}<Esc>O
+au FileType js inoremap <Leader>crc <Esc>vbcclass <C-r>" extends Component {<CR>}<Esc>Orender() {<CR>}<Esc>Oreturn <div></div><Esc>F<i
+au FileType js inoremap <Leader>iter <Esc>vbcfor (const key in <C-r>") {<CR>}<Esc>Oconst prop = <C-r>"<CR>
+au FileType js 
+au FileType js nnoremap <leader>ev :vsp $MYVIMRC<CR>
+au FileType js nnoremap <leader>sv :w<CR>:source $MYVIMRC<CR>
 nnoremap <leader>run :!node script<CR>
 
 
-inoremap fn( function(
-inoremap fn<Space> function<Space>
+au FileType js inoremap fn( function(
+au FileType js inoremap fn<Space> function<Space>
+
 
 " for window navigation on chromebook
 map <C-A-w> <C-w>
 
-" Persistent Undo
-set undofile 
-set undodir=~/.vim/undodir
 
 " preferences
 set tabstop=2
@@ -132,22 +153,6 @@ else
   autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
 endif
 
-" Keep undo history across sessions by storing it in a file
-if has('persistent_undo')
-  let vimDir = '$HOME/.vim'
-  let &runtimepath.=','.vimDir
-  let myUndoDir = expand(vimDir . '/undodir')
-  " Create dirs
-  call system('mkdir ' . vimDir)
-  call system('mkdir ' . myUndoDir)
-  let &undodir = myUndoDir
-  set undofile
-endif
-au BufRead,BufNewFile *.css setfiletype scss
-if (has("autocmd"))
-  au BufReadPost * if line("'\"") > 1 && line("'\"") < line("$") | exe "normal! g'\"" | endif
-endif
-"au BufRead,BufNewFile NERD_tree_1 
 
 
 " set colors
@@ -182,7 +187,6 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-inoremap hr <Esc>
 inoremap jk <Esc>
 
 nnoremap ,n :set nopaste<CR>
