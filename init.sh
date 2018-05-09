@@ -4,7 +4,6 @@ sudo apt-get -y install tmux git
 git config --global user.name "Zane Hitchcox"
 git config --global user.email zwhitchcox@gmail.com
 git config --global core.editor vim
-./install-vim.sh
 if [ ! -f ~/.ssh/id_rsa ]; then
   ssh-keygen -t rsa -b 4096 -C "zwhitchcox@gmail.com" -f ~/.ssh/id_rsa -N ""
 fi
@@ -17,4 +16,5 @@ cat ~/.ssh/id_rsa.pub
 echo;
 git clone git@github.com:zwhitchcox/dotfiles.git $HOME/dotfiles
 cd $HOME/dotfiles
+cp -r bin ~/.bin
 sh setup.sh

@@ -31,6 +31,8 @@ Plug 'zwhitchcox/grep.vim'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'SirVer/ultisnips'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'fatih/molokai'
 call plug#end()
 
 " Persistent Undo
@@ -111,9 +113,8 @@ au FileType js inoremap <Leader>cf <Esc>vbcfunction <C-r>"() {<CR>}<Esc>O
 au FileType js inoremap <Leader>cc <Esc>vbcclass <C-r>" {<CR>}<Esc>O
 au FileType js inoremap <Leader>crc <Esc>vbcclass <C-r>" extends Component {<CR>}<Esc>Orender() {<CR>}<Esc>Oreturn <div></div><Esc>F<i
 au FileType js inoremap <Leader>iter <Esc>vbcfor (const key in <C-r>") {<CR>}<Esc>Oconst prop = <C-r>"<CR>
-au FileType js 
-au FileType js nnoremap <leader>ev :vsp $MYVIMRC<CR>
-au FileType js nnoremap <leader>sv :w<CR>:source $MYVIMRC<CR>
+nnoremap <leader>ev :vsp $MYVIMRC<CR>
+nnoremap <leader>sv :w<CR>:source $MYVIMRC<CR>
 nnoremap <leader>run :!node script<CR>
 
 
@@ -235,3 +236,53 @@ command! RemoveAllConsoleLogs call RemoveAllConsoleLogs()
 let Grep_Skip_Dirs="node_modules .git dist"
 let Grep_Skip_files="*.min.*"
 set backspace=2 " make backspace work like most other programs
+
+
+set autowrite
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
+
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+
+let g:go_list_type = "quickfix"
+autocmd FileType go nmap <leader>t  <Plug>(go-test)
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+let g:go_fmt_command = "goimports"
+let g:go_highlight_types = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+
+" :GoAlternate  commands :A, :AV, :AS and :AT
+autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+
+
+autocmd FileType go nnoremap <Leader>d :GoDecls<CR>
+autocmd FileType go nnoremap <Leader>D :GoDeclsDir<CR>
+" :GoDef but opens in a vertical split
+autocmd FileType go nmap <Leader>v <Plug>(go-def-vertical)
+" :GoDef but opens in a horizontal split
+autocmd FileType go nmap <Leader>s <Plug>(go-def-split)
+autocmd FileType go nmap <Leader>i <Plug>(go-info)
+let g:go_auto_type_info = 1
+set updatetime=100
+let g:go_auto_sameids = 1
