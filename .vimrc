@@ -33,6 +33,9 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'SirVer/ultisnips'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'fatih/molokai'
+Plug 'galooshi/vim-import-js'
+Plug 'scrooloose/nerdcommenter'
+Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
 " Persistent Undo
@@ -93,26 +96,32 @@ nnoremap <Leader>{} A {<Esc>jo}<Esc>O
 
 
 " console.log
-au FileType js inoremap <Leader>log <Esc>vBcconsole.log('<C-r>"', <C-r>")
-au FileType js inoremap <Leader>strlog <Esc>vBcconsole.log('<C-r>"', JSON.stringify(<C-r>"))
-au FileType js inoremap <Leader>slog <Esc>vBcconsole.log('<C-r>"')
-au FileType js inoremap <Leader>llog <Esc>v^cconsole.log('<C-r>"', <C-r>")
-au FileType js nnoremap <Leader>llog <Esc>$v^cconsole.log('<C-r>"', <C-r>")
-au FileType js nmap <Leader>log o<C-r>"<Leader>log<Esc>=]`$
-au FileType js vnoremap <Leader>log sconsole.log('<C-r>"', <C-r>")
-au FileType js vnoremap <Leader>ilog s(function() {console.log('<C-r>"', <C-r>"); return <C-r>"})()
+au FileType javascript inoremap <buffer> <Leader>log <Esc>vBcconsole.log('<C-r>"', <C-r>")
+au FileType javascript inoremap <buffer> <Leader>strlog <Esc>vBcconsole.log('<C-r>"', JSON.stringify(<C-r>"))
+au FileType javascript inoremap <buffer> <Leader>slog <Esc>vBcconsole.log('<C-r>"')
+au FileType javascript inoremap <buffer> <Leader>llog <Esc>v^cconsole.log('<C-r>"', <C-r>")
+au FileType javascript nnoremap <buffer> <Leader>llog <Esc>$v^cconsole.log('<C-r>"', <C-r>")
+au FileType javascript nnoremap <buffer> <Leader>log o<C-r>"<Leader>log<Esc>=]`$
+au FileType javascript vnoremap <buffer> <Leader>log sconsole.log('<C-r>"', <C-r>")
+au FileType javascript vnoremap <buffer> <Leader>ilog s(function() {console.log('<C-r>"', <C-r>"); return <C-r>"})()
 
+
+autocmd FileType javascript nnoremap <buffer> <Leader>i <Esc>:ImportJSFix<CR>
 
 " JSON.stringify
-au FileType js vnoremap <Leader>str sJSON.stringify(<C-r>")
+au FileType javascript vnoremap <buffer> <Leader>str sJSON.stringify(<C-r>")
 
 " snippets
-au FileType js nnoremap <Leader>iife i;(() => {<CR>})()<Esc>O
-au FileType js nnoremap <Leader>aiife i;(async () => {<CR>})()<Esc>O
-au FileType js inoremap <Leader>cf <Esc>vbcfunction <C-r>"() {<CR>}<Esc>O
-au FileType js inoremap <Leader>cc <Esc>vbcclass <C-r>" {<CR>}<Esc>O
-au FileType js inoremap <Leader>crc <Esc>vbcclass <C-r>" extends Component {<CR>}<Esc>Orender() {<CR>}<Esc>Oreturn <div></div><Esc>F<i
-au FileType js inoremap <Leader>iter <Esc>vbcfor (const key in <C-r>") {<CR>}<Esc>Oconst prop = <C-r>"<CR>
+au FileType javascript nnoremap <buffer> <Leader>iife i;(() => {<CR>})()<Esc>O
+au FileType javascript nnoremap <buffer> <Leader>aiife i;(async () => {<CR>})()<Esc>O
+au FileType javascript inoremap <buffer> <Leader>cf <Esc>vbcfunction <C-r>"() {<CR>}<Esc>O
+au FileType javascript inoremap <buffer> <Leader>cc <Esc>vbcclass <C-r>" {<CR>}<Esc>O
+au FileType javascript inoremap <buffer> <Leader>crc <Esc>vbcclass <C-r>" extends Component {<CR>}<Esc>Orender() {<CR>}<Esc>Oreturn <div></div><Esc>F<i
+au FileType javascript inoremap <buffer> <Leader>iter <Esc>vbcfor (const key in <C-r>") {<CR>}<Esc>Oconst prop = <C-r>"<CR>
+
+
+
+
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>sv :w<CR>:source $MYVIMRC<CR>
 nnoremap <leader>run :!node script<CR>
@@ -284,5 +293,12 @@ autocmd FileType go nmap <Leader>v <Plug>(go-def-vertical)
 autocmd FileType go nmap <Leader>s <Plug>(go-def-split)
 autocmd FileType go nmap <Leader>i <Plug>(go-info)
 let g:go_auto_type_info = 1
-set updatetime=100
-let g:go_auto_sameids = 1
+set updatetime=800
+let g:go_auto_sameids = 0
+
+
+autocmd BufRead /home/zane/go/src/*.go
+      \  let s:tmp = matchlist(expand('%:p'),
+      \ '/home/zane/go/src/\(github.com/Massad/[^/]\+\)')
+      \| if len(s:tmp) > 1 |  exe 'silent :GoGuruScope ' . s:tmp[1] | endif
+      \| unlet s:tmp
