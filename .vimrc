@@ -35,7 +35,8 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'fatih/molokai'
 Plug 'galooshi/vim-import-js'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Valloric/YouCompleteMe'
+Plug 'lifepillar/pgsql.vim'
+"Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
 " Persistent Undo
@@ -302,3 +303,4 @@ autocmd BufRead /home/zane/go/src/*.go
       \ '/home/zane/go/src/\(github.com/Massad/[^/]\+\)')
       \| if len(s:tmp) > 1 |  exe 'silent :GoGuruScope ' . s:tmp[1] | endif
       \| unlet s:tmp
+let g:sql_type_default = 'pgsql'
