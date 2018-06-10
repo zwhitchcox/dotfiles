@@ -11,7 +11,7 @@ alias ~="cd ~/dev"
 
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin:$HOME/.bin
 export GOPATH=$HOME/go
-nvm use node
+nvm use 9.11.1
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 alias chrome="google-chrome-stable"

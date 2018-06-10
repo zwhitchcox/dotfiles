@@ -292,11 +292,12 @@ autocmd FileType go nnoremap <Leader>D :GoDeclsDir<CR>
 autocmd FileType go nmap <Leader>v <Plug>(go-def-vertical)
 " :GoDef but opens in a horizontal split
 autocmd FileType go nmap <Leader>s <Plug>(go-def-split)
+
 autocmd FileType go nmap <Leader>i <Plug>(go-info)
+
 let g:go_auto_type_info = 1
 set updatetime=800
 let g:go_auto_sameids = 0
-
 
 autocmd BufRead /home/zane/go/src/*.go
       \  let s:tmp = matchlist(expand('%:p'),
