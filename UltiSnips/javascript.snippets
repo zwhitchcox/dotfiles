@@ -1,0 +1,39 @@
+# console.log with variable
+
+snippet lf "fmt.Printf(...)"
+console.log("${1:${VISUAL}} = ", $1)
+endsnippet
+
+snippet ln "fmt.Printf(...)"
+console.log("$1")
+endsnippet
+
+
+snippet iifea "asynchronous iife"
+;(async () => {
+	$1
+})()
+endsnippet
+
+snippet store "get store from props"
+const { store } = this.props
+endsnippet
+
+snippet cmpt "mobx react component"
+import React from 'react';
+
+@cmpt({margin:true})
+export class $1 extends React.Component {
+	static beforeMount(store) {}
+
+	state = {}
+
+	handleChange = key => e => {
+		this.setState({[key]: e.target.value})
+	}
+
+	render() {
+		return <div></div>
+	}
+}
+endsnippet
