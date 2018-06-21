@@ -27,4 +27,6 @@ if [ -f ~/.dir_colors/dircolors ]
 fi
 PS1='${PWD##*/} $ '
 if [[ $HOME == "$(pwd)" ]]; then cd $HOME/dev ; fi
-export DOAT=92d3b3dfafa89535eca68604fd67760c785b8ceffdeb5c163d02c96462e41e04
+if [ -f ~/.secrets ]; then
+ source ~/.secrets
+fi
