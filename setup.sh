@@ -3,4 +3,5 @@
 ./go
 ./vim
 ./pers
+./kubectl
 echo 'All Done!'

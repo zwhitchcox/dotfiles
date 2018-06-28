@@ -1,6 +1,7 @@
 #!/bin/bash
 sudo apt-get update
-sudo apt-get -y install tmux git cmake
+sudo apt-get -y install tmux git cmake apt-transport-https curl ca-certificates software-properties-common
+
 git config --global user.name "Zane Hitchcox"
 git config --global user.email zwhitchcox@gmail.com
 git config --global core.editor vim

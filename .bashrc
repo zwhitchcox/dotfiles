@@ -25,7 +25,8 @@ export NODEBASHVIM=$HOME/node-bash/vim
 if [ -f ~/.dir_colors/dircolors ]
   then eval `dircolors ~/.dir_colors/dircolors`
 fi
-PS1='${PWD##*/} $ '
+#PS1='${PWD##*/} $ '
+PS1='${PWD##*/} $(__docker_machine_ps1 " [%s]")$ '
 if [[ $HOME == "$(pwd)" ]]; then cd $HOME/dev ; fi
 if [ -f ~/.secrets ]; then
  source ~/.secrets
