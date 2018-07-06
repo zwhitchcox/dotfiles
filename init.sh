@@ -1,12 +1,12 @@
 #!/bin/bash
 sleep 1
 
-if [ -n "$name" ];
+if [ -z "$name" ];
 then echo "What is your full name?" && read name;
-else echo "name is set to $name";
+else echo "Name is set to $name";
 fi
 
-if [ -n "$email" ];
+if [ -z "$email" ];
 then echo "What is your email?" && read email;
 else echo "Email is set to $email";
 fi
