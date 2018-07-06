@@ -36,6 +36,7 @@ google-chrome-stable https://github.com/settings/ssh/new
 echo;
 read -p  "Press enter continue: "
 echo;
+ssh-keyscan -H github.com >> ~/.ssh/known_hosts
 git clone git@github.com:zwhitchcox/dotfiles.git $HOME/dotfiles
 cd $HOME/dotfiles
 cp -r .bin ~/.bin
