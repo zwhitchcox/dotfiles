@@ -1,3 +1,0 @@
-#!/bin/bash
-http-server /usr/share/gtk-doc/html/ &
-sensible-browser http://localhost:8080

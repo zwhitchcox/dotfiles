@@ -6,4 +6,4 @@ cp -r ~/.gitconfig ~/dotfiles
 cp -r ~/.aliases ~/dotfiles
 cp -r ~/.bin ~/dotfiles
 cp -r ~/.vim/UltiSnips ~/dotfiles
-(cd ~/dotfiles && gitpush "$1")
+cd ~/dotfiles && gitpush "$1"
