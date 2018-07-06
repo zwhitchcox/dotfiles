@@ -26,11 +26,9 @@ fi
 eval $(ssh-agent -s)
 ssh-add ~/.ssh/id_rsa
 echo;
-echo "Now, copy this key to your github account (in the new browser window). If you don't have one, create one now."
+echo "Your github key has been copied to your clipboard. Paste it into your account in the new browser window. Please create an account if you don't already have one."
 echo;
-echo "Use Ctrl+Shift+C to copy, not Ctrl+C"
-echo;
-cat ~/.ssh/id_rsa.pub
+cat ~/.ssh/id_rsa.pub | xclip -selection c
 echo;
 xdg-open https://github.com/settings/ssh/new
 echo;
