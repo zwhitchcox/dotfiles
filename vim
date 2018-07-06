@@ -1,6 +1,7 @@
 #!/bin/bash
 
 sudo apt install python-dev python3-dev -yqq
+sudo apt-get install libncurses5-dev libncursesw5-dev -yqq
 mkdir -p $HOME/src/vim
 git clone https://github.com/vim/vim --depth=1 $HOME/src/vim
 cd $HOME/src/vim
@@ -27,10 +28,9 @@ sudo ./configure \
 
 make
 sudo make install
-exit
 
 cd ..
-rm -rf vim
+
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim +PlugInstall +PlugInstall +qa

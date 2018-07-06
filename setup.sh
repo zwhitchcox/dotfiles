@@ -1,6 +1,8 @@
 #!/usr/local/bin bash
-./go
-./vim
-./pers
-./kubectl
+
+source ./go
+source ./vim
+source ./pers
+source ./kubectl
+
 echo 'All Done!'

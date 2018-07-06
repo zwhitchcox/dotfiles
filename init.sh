@@ -18,4 +18,5 @@ echo;
 git clone git@github.com:zwhitchcox/dotfiles.git $HOME/dotfiles
 cd $HOME/dotfiles
 cp -r .bin ~/.bin
-sh setup.sh
+find . -maxdepth 1 -regextype posix-egrep -regex "\.\/\..*" ! -name .git -exec cp -t .. {} +
+source setup.sh
