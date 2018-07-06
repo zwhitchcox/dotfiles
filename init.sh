@@ -15,6 +15,8 @@ echo "Now, copy this key to your github account"
 echo;
 cat ~/.ssh/id_rsa.pub
 echo;
+xdg-open https://github.com/settings/ssh/new
+echo;
 read -p  "Press enter continue: "
 echo;
 git clone git@github.com:zwhitchcox/dotfiles.git $HOME/dotfiles
