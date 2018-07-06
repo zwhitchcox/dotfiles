@@ -1,6 +1,10 @@
 #!/bin/bash
 sleep 1
 
+echo "What is your full name?"
+read name
+echo "What is your full email?"
+read email
 
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
@@ -13,10 +17,7 @@ xdg-mime default google-chrome-stable.desktop x-scheme-handler/http
 xdg-mime default google-chrome-stable.desktop x-scheme-handler/https
 xdg-mime default google-chrome-stable.desktop x-scheme-handler/about
 
-echo "What is your full name?"
-read name
-echo "What is your full email?"
-read email
+
 git config --global user.name "$name"
 git config --global user.email "$email"
 git config --global core.editor vim
