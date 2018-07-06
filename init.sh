@@ -23,7 +23,7 @@ fi
 eval $(ssh-agent -s)
 ssh-add ~/.ssh/id_rsa
 echo;
-echo "Now, copy this key to your github account"
+echo "Now, copy this key to your github account (in the new browser window). If you don't have one, create one now."
 echo;
 echo "Use Ctrl+Shift+C to copy, not Ctrl+C"
 echo;
