@@ -17,12 +17,12 @@ echo "Use Ctrl+Shift+C to copy, not Ctrl+C"
 echo;
 stty intr ''
 cat ~/.ssh/id_rsa.pub
-stty intr sane
 echo;
 xdg-open https://github.com/settings/ssh/new
 echo;
 read -p  "Press enter continue: "
 echo;
+stty intr sane
 git clone git@github.com:zwhitchcox/dotfiles.git $HOME/dotfiles
 cd $HOME/dotfiles
 cp -r .bin ~/.bin
