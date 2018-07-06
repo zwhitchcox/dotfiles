@@ -37,3 +37,4 @@ vim +PlugInstall +PlugInstall +qa
 cd $HOME/.vim/bundle/YouCompleteMe
 ./install.py --js-completer --go-completer
 cd $HOME/dotfiles
+cp UltiSnips $HOME/.vim
