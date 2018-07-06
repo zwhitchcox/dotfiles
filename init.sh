@@ -1,8 +1,7 @@
 #!/bin/bash
 sleep 1
 
-echo "what is your name?"
-read name
+
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
 
@@ -14,11 +13,15 @@ xdg-mime default google-chrome-stable.desktop x-scheme-handler/http
 xdg-mime default google-chrome-stable.desktop x-scheme-handler/https
 xdg-mime default google-chrome-stable.desktop x-scheme-handler/about
 
-git config --global user.name "Zane Hitchcox"
-git config --global user.email zwhitchcox@gmail.com
+echo "What is your full name?"
+read name
+echo "What is your full email?"
+read email
+git config --global user.name "$name"
+git config --global user.email "$email"
 git config --global core.editor vim
 if [ ! -f ~/.ssh/id_rsa ]; then
-  ssh-keygen -t rsa -b 4096 -C "zwhitchcox@gmail.com" -f ~/.ssh/id_rsa -N ""
+  ssh-keygen -t rsa -b 4096 -C "email" -f ~/.ssh/id_rsa -N ""
 fi
 eval $(ssh-agent -s)
 ssh-add ~/.ssh/id_rsa
