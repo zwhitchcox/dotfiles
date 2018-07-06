@@ -11,9 +11,11 @@ fi
 eval $(ssh-agent -s)
 ssh-add ~/.ssh/id_rsa
 echo;
-read -p  "Now, copy this key to your github account and press enter continue: "
+echo "Now, copy this key to your github account"
 echo;
 cat ~/.ssh/id_rsa.pub
+echo;
+read -p  "Press enter continue: "
 echo;
 git clone git@github.com:zwhitchcox/dotfiles.git $HOME/dotfiles
 cd $HOME/dotfiles
