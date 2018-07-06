@@ -2,6 +2,7 @@
 
 source ./go
 source ./vim
+source ./node
 source ./pers
 source ./kubectl
 

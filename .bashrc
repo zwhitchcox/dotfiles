@@ -31,3 +31,4 @@ if [[ $HOME == "$(pwd)" ]]; then cd $HOME/dev ; fi
 if [ -f ~/.secrets ]; then
  source ~/.secrets
 fi
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
