@@ -23,14 +23,12 @@ echo "Now, copy this key to your github account"
 echo;
 echo "Use Ctrl+Shift+C to copy, not Ctrl+C"
 echo;
-(trap '' 2 && cd ~/path/to/zork/ && frotz ZORK1.DAT)
 cat ~/.ssh/id_rsa.pub
 echo;
 xdg-open https://github.com/settings/ssh/new
 echo;
 read -p  "Press enter continue: "
 echo;
-trap 2
 git clone git@github.com:zwhitchcox/dotfiles.git $HOME/dotfiles
 cd $HOME/dotfiles
 cp -r .bin ~/.bin
