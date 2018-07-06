@@ -17,7 +17,7 @@ echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sud
 sudo apt-get update
 sudo apt-get -y install tmux git cmake apt-transport-https curl ca-certificates software-properties-common google-chrome-stable xclip
 
-xdg-settings set default-web-browser google-chrome-stable.desktop
+xdg-settings set default-web-browser google-chrome.desktop
 
 git config --global user.name "$name"
 git config --global user.email "$email"
