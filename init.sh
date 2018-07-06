@@ -3,7 +3,12 @@ sleep 1
 
 if [ -n "$name" ];
 then echo "What is your full name?" && read name;
-else echo "What is your full email?" && read email;
+else echo "name is set to $name";
+fi
+
+if [ -n "$email" ];
+then echo "What is your email?" && read email;
+else echo "Email is set to $email";
 fi
 
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
