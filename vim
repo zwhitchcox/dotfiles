@@ -1,7 +1,6 @@
 #!/bin/bash
 
-sudo apt install python-dev python3-dev -yqq
-sudo apt-get install libncurses5-dev libncursesw5-dev -yqq
+sudo apt install python-dev python3-dev libncurses5-dev libncursesw5-dev libx11-dev libxtst-dev xorg-dev -yqq
 mkdir -p $HOME/src/vim
 git clone https://github.com/vim/vim --depth=1 $HOME/src/vim
 cd $HOME/src/vim
@@ -23,10 +22,11 @@ sudo ./configure \
             --enable-localmap \
             --enable-python3interp=yes \
             --with-python3-config-dir=/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu \
+            --enable-gtk-check \
             --enable-gui=gtk2 \
             --prefix=/usr/local
 
-make
+make -j8
 sudo make install
 
 cd ..

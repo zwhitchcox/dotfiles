@@ -32,7 +32,7 @@ echo "Your github key has been copied to your clipboard. Paste it into your acco
 echo;
 cat ~/.ssh/id_rsa.pub | xclip -selection c
 echo;
-google-chrome-stable https://github.com/settings/ssh/new
+google-chrome-stable https://github.com/settings/ssh/new 
 echo;
 read -p  "Press enter continue: "
 echo;
