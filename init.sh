@@ -1,6 +1,14 @@
 #!/bin/bash
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+
 sudo apt-get update
-sudo apt-get -y install tmux git cmake apt-transport-https curl ca-certificates software-properties-common
+sudo apt-get -y install tmux git cmake apt-transport-https curl ca-certificates software-properties-common google-chrome-stable
+
+xdg-mime default google-chrome.desktop text/html
+xdg-mime default google-chrome.desktop x-scheme-handler/http
+xdg-mime default google-chrome.desktop x-scheme-handler/https
+xdg-mime default google-chrome.desktop x-scheme-handler/about
 
 git config --global user.name "Zane Hitchcox"
 git config --global user.email zwhitchcox@gmail.com
