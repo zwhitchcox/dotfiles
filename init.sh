@@ -32,8 +32,7 @@ echo "Your github and/or gitlab key has been copied to your clipboard. Paste it 
 echo;
 cat ~/.ssh/id_rsa.pub | xclip -selection c
 echo;
-google-chrome-stable https://gitlab.com/profile/keys
-google-chrome-stable https://github.com/settings/ssh/new
+google-chrome https://gitlab.com/profile/keys  https://github.com/settings/ssh/new
 
 echo;
 read -p  "Press enter continue: "
