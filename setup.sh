@@ -6,5 +6,6 @@ source ./node
 source ./pers
 source ./docker
 source ./kubernetes
+source ~/.bashrc
 
 echo 'All Done!'
