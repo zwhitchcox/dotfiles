@@ -21,3 +21,7 @@ do
   sudo wget "$base/contrib/completion/bash/${i}" -P /etc/bash_completion.d
 done
 
+sudo systemctl enable docker
+sudo setfacl -m $USER:rw /var/run/docker.sock
+sudo usermod -aG docker $USER
+sudo service docker start
