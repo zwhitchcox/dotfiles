@@ -299,7 +299,7 @@ let g:go_auto_type_info = 1
 set updatetime=800
 let g:go_auto_sameids = 0
 
-autocmd BufRead $HOME/go/src/*.go
+autocmd BufRead '$HOME/go/src/*.go'
       \  let s:tmp = matchlist(expand('%:p'),
       \ $HOME/go/src/\(github.com/Massad/[^/]\+\)')
       \| if len(s:tmp) > 1 |  exe 'silent :GoGuruScope ' . s:tmp[1] | endif
