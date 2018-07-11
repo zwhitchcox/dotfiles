@@ -26,6 +26,8 @@ if [ -f ~/.dir_colors/dircolors ]
   then eval `dircolors ~/.dir_colors/dircolors`
 fi
 #PS1='${PWD##*/} $ '
+source /etc/bash_completion.d/docker-machine-prompt.bash
+
 PS1='${PWD##*/} $(__docker_machine_ps1 " [%s]")$ '
 if [[ $HOME == "$(pwd)" ]]; then cd $HOME/dev ; fi
 if [ -f ~/.secrets ]; then
