@@ -305,3 +305,5 @@ autocmd BufRead '$HOME/go/src/*.go'
       \| if len(s:tmp) > 1 |  exe 'silent :GoGuruScope ' . s:tmp[1] | endif
       \| unlet s:tmp
 let g:sql_type_default = 'pgsql'
+
+set tabstop=2
