@@ -23,22 +23,25 @@ git config --global user.name "$name"
 git config --global user.email "$email"
 git config --global core.editor vim
 if [ ! -f ~/.ssh/id_rsa ]; then
-  ssh-keygen -t rsa -b 4096 -C "email" -f ~/.ssh/id_rsa -N ""
+  ssh-keygen -t rsa -b 4096 -C "$email" -f ~/.ssh/id_rsa -N ""
 fi
 eval $(ssh-agent -s)
 ssh-add ~/.ssh/id_rsa
 echo;
-echo "Your github key has been copied to your clipboard. Paste it into your account in the new browser window. Please create an account if you don't already have one."
+echo "Your github and/or gitlab key has been copied to your clipboard. Paste it into your account in the new browser window. Please create an account if you don't already have one."
 echo;
 cat ~/.ssh/id_rsa.pub | xclip -selection c
 echo;
-google-chrome-stable https://github.com/settings/ssh/new
+google-chrome https://gitlab.com/profile/keys  https://github.com/settings/ssh/new
+
 echo;
 read -p  "Press enter continue: "
 echo;
 ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+ssh-keyscan -H gitlab.com >> ~/.ssh/known_hosts
 git clone git@github.com:zwhitchcox/dotfiles.git $HOME/dotfiles
 cd $HOME/dotfiles
 cp -r .bin ~/.bin
+mkdir ~/dev
 find . -maxdepth 1 -regextype posix-egrep -regex "\.\/\..*" ! -name .git -exec cp -t .. {} +
 source setup.sh
