@@ -2,5 +2,5 @@
 
 ### To Run
 `
-wget https://raw.githubusercontent.com/zwhitchcox/dotfiles/master/init.sh && source init.sh
+wget https://gitlab.com/zwhitchcox/dotfiles/raw/master/init.sh && source init.sh
 `

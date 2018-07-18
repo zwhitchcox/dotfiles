@@ -1,11 +1,13 @@
 #!/usr/local/bin bash
 
-source ./go
-source ./vim
-source ./node
-source ./pers
-source ./docker
-source ./kubernetes
+sh ./go
+sh ./vim
+sh ./node
+sh ./pers
+sh ./docker
+sh ./kubernetes
 source ~/.bashrc
+snap install yq
+
 
 echo 'All Done!'

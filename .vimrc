@@ -36,7 +36,7 @@ Plug 'fatih/molokai'
 Plug 'galooshi/vim-import-js'
 Plug 'scrooloose/nerdcommenter'
 Plug 'lifepillar/pgsql.vim'
-Plug 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
 " Persistent Undo
@@ -68,7 +68,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let g:NERDTreeDirArrows=0
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '~'
-let NERDTreeIgnore = ['node_modules','bower_components', '.git', 'npm-debug.log', 'elm-stuff']
+let NERDTreeIgnore = ['node_modules','vendor', 'bower_components', '.git', 'npm-debug.log', 'elm-stuff', 'package-lock.json', 'yarn.lock', 'build', 'Gopkg.toml', 'Gopkg.lock']
 "switch between nerdtree and file
 execute "set <M-h>=\eh"
 nnoremap <M-h> <C-w>h

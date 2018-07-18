@@ -13,6 +13,7 @@ alias ....="cd ../../.."
 alias ~="cd ~/dev"
 
 export PATH=$PATH:/usr/lib/go-1.10/bin::$HOME/.bin
+export PATH=$PATH:$HOME/go/bin
 export GOPATH=$HOME/go
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
